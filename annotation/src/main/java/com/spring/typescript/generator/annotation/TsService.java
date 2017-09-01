@@ -9,9 +9,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.TYPE})
-public @interface TsClient {
+public @interface TsService {
 
     String value() default "";
-
-    String name() default "";
 }

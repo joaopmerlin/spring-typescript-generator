@@ -2,15 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>spring-typescript-generator</artifactId>
-        <groupId>com.spring.typescript.generator</groupId>
-        <version>0.0.1</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-typescript-generator-maven-plugin</artifactId>
+    <parent>
+        <groupId>com.spring.typescript.generator</groupId>
+        <artifactId>spring-typescript-generator</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
+
     <name>maven-plugin</name>
 
     <dependencies>
@@ -20,39 +22,61 @@
             <version>3.0</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-compat</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- dependencies to annotations -->
+        <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
             <version>3.4</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.spring.typescript.generator</groupId>
+            <artifactId>annotation</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <goalPrefix>spring-typescript-generator</goalPrefix>
-                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>mojo-descriptor</id>
-                        <goals>
-                            <goal>descriptor</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>help-goal</id>
-                        <goals>
-                            <goal>helpmojo</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.2</version>
+                    <executions>
+                        <execution>
+                            <id>mojo-descriptor</id>
+                            <goals>
+                                <goal>descriptor</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
 
 </project>

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by joao on 17/08/17.
  */
 
-@TsModel
+@TsModel("user")
 public class User implements Serializable {
 
     private Long id;

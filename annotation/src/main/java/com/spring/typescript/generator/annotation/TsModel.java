@@ -12,6 +12,4 @@ import java.lang.annotation.*;
 public @interface TsModel {
 
     String value() default "";
-
-    String name() default "";
 }

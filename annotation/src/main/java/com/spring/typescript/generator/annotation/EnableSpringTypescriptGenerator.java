@@ -12,6 +12,4 @@ import java.lang.annotation.*;
 public @interface EnableSpringTypescriptGenerator {
 
     String[] value() default {};
-
-    String[] basePackages() default {};
 }
