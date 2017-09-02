@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  */
 
 @Documented
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface TsService {
 

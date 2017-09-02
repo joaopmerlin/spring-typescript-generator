@@ -29,6 +29,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -46,8 +47,15 @@
             </plugin>
             <plugin>
                 <groupId>com.spring.typescript.generator</groupId>
-                <artifactId>maven-plugin</artifactId>
+                <artifactId>typescript-generator-maven-plugin</artifactId>
                 <version>0.0.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

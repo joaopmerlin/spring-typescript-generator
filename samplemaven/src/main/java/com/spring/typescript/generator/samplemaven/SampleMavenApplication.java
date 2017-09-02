@@ -1,5 +1,6 @@
 package com.spring.typescript.generator.samplemaven;
 
+import com.spring.typescript.generator.annotation.EnableSpringTypescriptGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-//@EnableSpringTypescriptGenerator("com.spring.typescript.generator.samplemaven.*")
+@EnableSpringTypescriptGenerator
 public class SampleMavenApplication {
 
     public static void main(String[] args) throws Exception {
