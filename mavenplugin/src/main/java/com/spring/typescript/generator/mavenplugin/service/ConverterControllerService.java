@@ -1,10 +1,13 @@
 package com.spring.typescript.generator.mavenplugin.service;
 
+import com.spring.typescript.generator.annotation.TsModel;
 import com.spring.typescript.generator.annotation.TsService;
 import com.spring.typescript.generator.mavenplugin.model.Metodo;
 import com.spring.typescript.generator.mavenplugin.model.Service;
+import com.spring.typescript.generator.mavenplugin.model.Tipos;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,13 +31,9 @@ public class ConverterControllerService extends ConverterService<Service> {
             Arrays.asList(aClass.getDeclaredMethods()).forEach(method -> {
                 Metodo metodo = new Metodo();
                 metodo.setNome(method.getName());
-
-                if (Iterable.class.isAssignableFrom(method.getReturnType())) {
-                    Class type = (Class) ((ParameterizedTypeImpl) method.getGenericReturnType()).getActualTypeArguments()[0];
-                    // metodo.setRetorno(getType(type, null) + "[]");
-                } else {
-                    // metodo.setRetorno(getModel(method.getReturnType()));
-                }
+                setRetorno(method, metodo, service);
+                metodo.setMethod("get");
+                metodo.setUrl("/teste");
 
                 service.addMetodo(metodo);
             });
@@ -42,5 +41,31 @@ public class ConverterControllerService extends ConverterService<Service> {
             services.add(service);
         });
         return services;
+    }
+
+    private String setRetorno(Method method, Metodo metodo, Service service) {
+        if (Iterable.class.isAssignableFrom(method.getReturnType())) {
+            Class type = (Class) ((ParameterizedTypeImpl) method.getGenericReturnType()).getActualTypeArguments()[0];
+
+            if (type.isAnnotationPresent(TsModel.class)){
+                metodo.setRetorno(type.getSimpleName() + "[]");
+                service.addImport(getModel(type));
+            } else {
+                metodo.setRetorno("any[]");
+            }
+
+        } else if (method.getReturnType().isAnnotationPresent(TsModel.class)) {
+            metodo.setRetorno(method.getReturnType().getSimpleName());
+            service.addImport(getModel(method.getReturnType()));
+        }
+
+        else {
+            Tipos.getTipos().forEach((key, value) -> {
+                if (key.isAssignableFrom(method.getReturnType())) {
+                    metodo.setRetorno(value);
+                    return;
+                }
+            });
+        }
     }
 }

@@ -1,7 +1,10 @@
 export class ${service.nome} {
 
     <#list service.metodos as metodo>
-    ${metodo.nome}
+    public ${metodo.nome}(): ${metodo.retorno} {
+
+    }
+
     </#list>
 
 }
