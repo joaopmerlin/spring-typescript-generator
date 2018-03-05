@@ -8,8 +8,7 @@ import java.lang.annotation.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-public @interface EnableSpringTypescriptGenerator {
+@Target({ElementType.FIELD, ElementType.METHOD})
+public @interface TsIgnore {
 
-    String[] value() default {};
 }

@@ -51,6 +51,14 @@
             <artifactId>annotation</artifactId>
             <version>0.0.1</version>
         </dependency>
+
+        <!--other dependencies-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.26-incubating</version>
+        </dependency>
+
     </dependencies>
 
     <build>
