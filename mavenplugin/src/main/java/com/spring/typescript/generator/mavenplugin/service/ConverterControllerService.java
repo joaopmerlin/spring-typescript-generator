@@ -43,7 +43,7 @@ public class ConverterControllerService extends ConverterService<Service> {
         return services;
     }
 
-    private String setRetorno(Method method, Metodo metodo, Service service) {
+    private void setRetorno(Method method, Metodo metodo, Service service) {
         if (Iterable.class.isAssignableFrom(method.getReturnType())) {
             Class type = (Class) ((ParameterizedTypeImpl) method.getGenericReturnType()).getActualTypeArguments()[0];
 
