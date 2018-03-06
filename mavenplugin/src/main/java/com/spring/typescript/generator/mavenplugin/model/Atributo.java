@@ -6,6 +6,10 @@ public class Atributo {
 
     private String tipo;
 
+    private Boolean body = false;
+
+    private Boolean param = false;
+
     public String getNome() {
         return nome;
     }
@@ -20,5 +24,21 @@ public class Atributo {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Boolean getBody() {
+        return body;
+    }
+
+    public void setBody(Boolean body) {
+        this.body = body;
+    }
+
+    public Boolean getParam() {
+        return param;
+    }
+
+    public void setParam(Boolean param) {
+        this.param = param;
     }
 }

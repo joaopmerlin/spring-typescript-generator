@@ -1,6 +1,9 @@
 package com.spring.typescript.generator.mavenplugin.model;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Metodo {
 
@@ -8,7 +11,7 @@ public class Metodo {
 
     private String retorno;
 
-    private List<Model> parametros;
+    private Set<Atributo> parametros = new LinkedHashSet<>();
 
     private String url;
 
@@ -30,11 +33,15 @@ public class Metodo {
         this.retorno = retorno;
     }
 
-    public List<Model> getParametros() {
+    public Set<Atributo> getParametros() {
         return parametros;
     }
 
-    public void addParametro(Model parametro) {
+    public void setParametros(Set<Atributo> parametros) {
+        this.parametros = parametros;
+    }
+
+    public void addParametro(Atributo parametro) {
         this.parametros.add(parametro);
     }
 
@@ -52,5 +59,14 @@ public class Metodo {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public String getParametrosString() {
+        return parametros.stream().map(e -> e.getNome() + ": " + e.getTipo()).collect(Collectors.joining(", "));
+    }
+
+    public String getParametroBody() {
+        List<Atributo> collect = parametros.stream().filter(e -> e.getBody()).collect(Collectors.toList());
+        return collect.isEmpty() ? null : collect.get(0).getNome();
     }
 }

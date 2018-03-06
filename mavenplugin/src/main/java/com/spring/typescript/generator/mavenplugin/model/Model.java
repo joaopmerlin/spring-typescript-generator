@@ -11,6 +11,8 @@ public class Model implements Arquivo {
 
     private Set<Atributo> atributos = new LinkedHashSet<>();
 
+    private Set<Model> imports = new LinkedHashSet<>();
+
     private Boolean encapsular;
 
     public String getNome() {
@@ -35,6 +37,14 @@ public class Model implements Arquivo {
 
     public void addAtributo(Atributo atributo) {
         this.atributos.add(atributo);
+    }
+
+    public Set<Model> getImports() {
+        return imports;
+    }
+
+    public void addImport(Model model) {
+        this.imports.add(model);
     }
 
     public Boolean getEncapsular() {

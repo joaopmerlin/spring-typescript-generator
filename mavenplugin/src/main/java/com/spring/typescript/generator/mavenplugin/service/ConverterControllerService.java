@@ -5,6 +5,7 @@ import com.spring.typescript.generator.annotation.TsService;
 import com.spring.typescript.generator.mavenplugin.model.Metodo;
 import com.spring.typescript.generator.mavenplugin.model.Service;
 import com.spring.typescript.generator.mavenplugin.model.Tipos;
+import org.apache.commons.lang3.ClassUtils;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Method;
@@ -15,6 +16,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ConverterControllerService extends ConverterService<Service> {
+
+    private SpringService springService = new SpringService();
 
     @Override
     public List<Service> converter(Set<Class<?>> classes) {
@@ -32,9 +35,9 @@ public class ConverterControllerService extends ConverterService<Service> {
                 Metodo metodo = new Metodo();
                 metodo.setNome(method.getName());
                 setRetorno(method, metodo, service);
-                metodo.setMethod("get");
-                metodo.setUrl("/teste");
-
+                metodo.setMethod(springService.getMethod(method));
+                metodo.setParametros(springService.getParametros(method, service));
+                metodo.setUrl(springService.getUrl(aClass, method, metodo.getParametros()));
                 service.addMetodo(metodo);
             });
 
@@ -44,7 +47,7 @@ public class ConverterControllerService extends ConverterService<Service> {
     }
 
     private void setRetorno(Method method, Metodo metodo, Service service) {
-        if (Iterable.class.isAssignableFrom(method.getReturnType())) {
+        if (ClassUtils.isAssignable(method.getReturnType(), Iterable.class)) {
             Class type = (Class) ((ParameterizedTypeImpl) method.getGenericReturnType()).getActualTypeArguments()[0];
 
             if (type.isAnnotationPresent(TsModel.class)){
@@ -61,7 +64,7 @@ public class ConverterControllerService extends ConverterService<Service> {
 
         else {
             Tipos.getTipos().forEach((key, value) -> {
-                if (key.isAssignableFrom(method.getReturnType())) {
+                if (ClassUtils.isAssignable(method.getReturnType(), key)) {
                     metodo.setRetorno(value);
                     return;
                 }

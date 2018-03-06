@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by joao on 17/08/17.
  */
 
-@TsModel("user")
+@TsModel(value = "user", encapsulate = false)
 public class User implements Serializable {
 
     private Long id;

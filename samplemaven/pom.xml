@@ -58,7 +58,7 @@
                 <artifactId>typescript-generator-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <destination>/home/joao/projetos/teste</destination>
+                    <destination>/home/joao.paulo/Documentos/Projetos/teste/src/app</destination>
                 </configuration>
             </plugin>
         </plugins>

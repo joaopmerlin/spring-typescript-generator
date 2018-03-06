@@ -24,12 +24,12 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public User getUser(@PathVariable Long id) {
+    public User getUser(@PathVariable("id") Long id, @RequestParam("teste") Integer teste) {
         return new User(id, String.format("user%s", id), String.format("user%s@user.com", id));
     }
 
-    @PostMapping
-    public User saveUser(@RequestBody User user) {
-        return user;
+    @RequestMapping(method = RequestMethod.POST)
+    public List<User> saveUser(@RequestBody List<User> users, int teste) {
+        return users;
     }
 }

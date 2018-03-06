@@ -1,5 +1,5 @@
 <#list model.imports as imp>
-import {${imp.nome}} from "./${imp.nomeArquivo}";
+import {${imp.nome}} from './${imp.nomeArquivo}';
 </#list>
 <#if model.imports?has_content>
 

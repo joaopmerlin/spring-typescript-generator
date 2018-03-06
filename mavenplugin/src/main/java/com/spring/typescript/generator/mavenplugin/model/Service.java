@@ -11,6 +11,8 @@ public class Service implements Arquivo {
 
     private Set<Metodo> metodos = new LinkedHashSet<>();
 
+    private Set<Model> imports = new LinkedHashSet<>();
+
     public String getNome() {
         return nome;
     }
@@ -33,5 +35,15 @@ public class Service implements Arquivo {
 
     public void addMetodo(Metodo metodo) {
         this.metodos.add(metodo);
+    }
+
+    public Set<Model> getImports() {
+        return imports;
+    }
+
+    public void addImport(Model model) {
+        if (this.imports.stream().filter(e -> e.getNome().equals(model.getNome())).count() == 0) {
+            this.imports.add(model);
+        }
     }
 }

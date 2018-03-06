@@ -6,6 +6,7 @@ import com.spring.typescript.generator.mavenplugin.model.Arquivo;
 import com.spring.typescript.generator.mavenplugin.model.Atributo;
 import com.spring.typescript.generator.mavenplugin.model.Model;
 import com.spring.typescript.generator.mavenplugin.model.Tipos;
+import org.apache.commons.lang3.ClassUtils;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Field;
@@ -48,7 +49,7 @@ public abstract class ConverterService<T> {
     protected String getType(Field field, Arquivo arquivo) {
         AtomicReference<String> tipo = new AtomicReference<>("any");
 
-        if (Iterable.class.isAssignableFrom(field.getType())) {
+        if (ClassUtils.isAssignable(field.getType(), Iterable.class)) {
             Class type = (Class)((ParameterizedTypeImpl) field.getGenericType()).getActualTypeArguments()[0];
 
             if (type.isAnnotationPresent(TsModel.class)){
@@ -66,7 +67,7 @@ public abstract class ConverterService<T> {
 
         else {
             Tipos.getTipos().forEach((key, value) -> {
-                if (key.isAssignableFrom(field.getType())) {
+                if (ClassUtils.isAssignable(field.getType(), key)) {
                     tipo.set(value);
                     return;
                 }
