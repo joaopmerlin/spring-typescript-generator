@@ -3,7 +3,6 @@ package com.spring.typescript.generator.samplemaven.model;
 import com.spring.typescript.generator.annotation.TsIgnore;
 import com.spring.typescript.generator.annotation.TsModel;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,19 +10,11 @@ import java.util.Date;
  */
 
 @TsModel(value = "user", encapsulate = false)
-public class User implements Serializable {
+public class User extends SuperUser {
 
-    private Long id;
-    private String name;
     @TsIgnore
     private String email;
     private Date cadastro;
     private Boolean ativo;
     private Grupo grupo;
-
-    public User(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
 }

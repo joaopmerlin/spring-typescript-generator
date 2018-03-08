@@ -4,7 +4,7 @@ import com.spring.typescript.generator.annotation.TsService;
 import com.spring.typescript.generator.samplemaven.model.User;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,14 +18,12 @@ public class UserController {
 
     @GetMapping
     public List<User> getUsers() {
-        return Arrays.asList(new User(1L, "user", "user@user.com"),
-                new User(2L, "user2", "user2@user.com"),
-                new User(3L, "user3", "user3@user.com"));
+        return new ArrayList<>();
     }
 
     @GetMapping("{id}")
     public User getUser(@PathVariable("id") Long id, @RequestParam("teste") Integer teste) {
-        return new User(id, String.format("user%s", id), String.format("user%s@user.com", id));
+        return new User();
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -4,7 +4,7 @@ import {${imp.nome}} from './${imp.nomeArquivo}';
 <#if model.imports?has_content>
 
 </#if>
-export class ${model.nome} {
+export ${model.modifier}class ${model.nome} {
 
     <#if model.encapsular>
     <#list model.atributos as attr>
@@ -29,4 +29,5 @@ export class ${model.nome} {
     ${attr.nome}: ${attr.tipo};
     </#list>
     </#if>
+
 }

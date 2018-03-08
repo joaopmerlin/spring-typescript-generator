@@ -15,6 +15,8 @@ public class Model implements Arquivo {
 
     private Boolean encapsular;
 
+    private String modifier;
+
     public String getNome() {
         return nome;
     }
@@ -53,5 +55,13 @@ public class Model implements Arquivo {
 
     public void setEncapsular(Boolean encapsular) {
         this.encapsular = encapsular;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 }
