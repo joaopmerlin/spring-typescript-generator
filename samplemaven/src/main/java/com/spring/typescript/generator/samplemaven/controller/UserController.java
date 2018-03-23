@@ -1,6 +1,6 @@
 package com.spring.typescript.generator.samplemaven.controller;
 
-import com.spring.typescript.generator.annotation.TsService;
+import com.spring.typescript.generator.annotation.TsComponent;
 import com.spring.typescript.generator.samplemaven.model.User;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Created by joao on 17/08/17.
  */
 
-@TsService("user.service")
+@TsComponent(User.class)
 @RestController
 @RequestMapping("user")
 public class UserController {

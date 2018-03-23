@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class TemplateService {
 
-    public void build(Arquivo arquivo, String templateName, Parametros parametros) {
+    public void build(Arquivo arquivo, String templateName, String folder, Parametros parametros) {
         try {
             HashMap<String, Object> params = new HashMap<>();
             params.put(templateName, arquivo);
@@ -24,7 +24,7 @@ public class TemplateService {
 
             Template template = new Template(null, new InputStreamReader(modelTemplate), cfg);
 
-            String dir = parametros.getDestino() + "/" + templateName;
+            String dir = parametros.getDestino() + "/" + folder;
             new File(dir).mkdir();
             File file = new File(dir + String.format("/%s.ts", arquivo.getNomeArquivo()));
 

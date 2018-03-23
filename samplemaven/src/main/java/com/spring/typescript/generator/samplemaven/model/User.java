@@ -9,8 +9,8 @@ import java.util.Date;
  * Created by joao on 17/08/17.
  */
 
-@TsModel(value = "user", encapsulate = false)
-public class User extends SuperUser {
+@TsModel("Usuario")
+public class User {
 
     @TsIgnore
     private String email;

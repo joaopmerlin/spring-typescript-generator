@@ -1,4 +1,4 @@
-package com.spring.typescript.generator.mavenplugin.service;
+package com.spring.typescript.generator.mavenplugin.converter;
 
 import com.spring.typescript.generator.mavenplugin.model.Model;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ConverterModelService extends ConverterService<Model> {
+public class ModelConverter extends AbstractConverter<Model> implements Converter<Model> {
 
     @Override
     public List<Model> converter(Set<Class<?>> classes) {

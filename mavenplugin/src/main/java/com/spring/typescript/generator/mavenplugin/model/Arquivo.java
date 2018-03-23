@@ -2,7 +2,11 @@ package com.spring.typescript.generator.mavenplugin.model;
 
 public interface Arquivo {
 
-    void addImport(Model model);
+    String getNome();
 
     String getNomeArquivo();
+
+    String getFolder();
+
+    void addImport(Model model);
 }

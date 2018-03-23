@@ -9,7 +9,7 @@ import java.util.List;
  * Created by joao on 17/08/17.
  */
 
-@TsModel("grupo")
+@TsModel
 public class Grupo implements Serializable {
 
     private Long id;

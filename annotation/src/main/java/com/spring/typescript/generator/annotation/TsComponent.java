@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface TsService {
+public @interface TsComponent {
 
-    String value() default "";
+    Class<?> value();
 }

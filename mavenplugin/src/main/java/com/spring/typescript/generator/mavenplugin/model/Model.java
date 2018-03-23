@@ -7,16 +7,13 @@ public class Model implements Arquivo {
 
     private String nome;
 
-    private String nomeArquivo;
-
     private Set<Atributo> atributos = new LinkedHashSet<>();
 
     private Set<Model> imports = new LinkedHashSet<>();
 
-    private Boolean encapsular;
-
     private String modifier;
 
+    @Override
     public String getNome() {
         return nome;
     }
@@ -25,12 +22,14 @@ public class Model implements Arquivo {
         this.nome = nome;
     }
 
+    @Override
     public String getNomeArquivo() {
-        return nomeArquivo == null ? nome.toLowerCase() : nomeArquivo;
+        return nome.toLowerCase();
     }
 
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
+    @Override
+    public String getFolder() {
+        return nome.toLowerCase();
     }
 
     public Set<Atributo> getAtributos() {
@@ -47,14 +46,6 @@ public class Model implements Arquivo {
 
     public void addImport(Model model) {
         this.imports.add(model);
-    }
-
-    public Boolean getEncapsular() {
-        return encapsular;
-    }
-
-    public void setEncapsular(Boolean encapsular) {
-        this.encapsular = encapsular;
     }
 
     public String getModifier() {

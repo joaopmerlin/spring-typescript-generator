@@ -1,4 +1,4 @@
-package com.spring.typescript.generator.mavenplugin.service;
+package com.spring.typescript.generator.mavenplugin.converter;
 
 import com.spring.typescript.generator.annotation.TsIgnore;
 import com.spring.typescript.generator.annotation.TsModel;
@@ -16,20 +16,19 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
-public abstract class ConverterService<T> {
+public abstract class AbstractConverter<T> implements Converter<T> {
 
-    abstract List<T> converter(Set<Class<?>> classes);
+    public abstract List<T> converter(Set<Class<?>> classes);
 
-    protected Model getModel(Class<?> aClass) {
+    public Model getModel(Class<?> aClass) {
         Model model = new Model();
         model.setNome(aClass.getSimpleName());
 
         TsModel tsModel = aClass.getAnnotation(TsModel.class);
         if (!tsModel.value().isEmpty()) {
-            model.setNomeArquivo(tsModel.value());
+            model.setNome(tsModel.value());
         }
 
-        model.setEncapsular(tsModel.encapsulate());
         model.setModifier(Modifier.isAbstract(aClass.getModifiers()) ? "abstract " : "");
 
         Arrays.asList(aClass.getDeclaredFields()).forEach(field -> {

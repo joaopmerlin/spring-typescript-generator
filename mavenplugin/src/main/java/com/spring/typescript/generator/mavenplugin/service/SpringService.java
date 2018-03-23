@@ -1,7 +1,12 @@
 package com.spring.typescript.generator.mavenplugin.service;
 
 import com.spring.typescript.generator.annotation.TsModel;
-import com.spring.typescript.generator.mavenplugin.model.*;
+import com.spring.typescript.generator.mavenplugin.converter.Converter;
+import com.spring.typescript.generator.mavenplugin.converter.ModelConverter;
+import com.spring.typescript.generator.mavenplugin.model.Atributo;
+import com.spring.typescript.generator.mavenplugin.model.Model;
+import com.spring.typescript.generator.mavenplugin.model.Service;
+import com.spring.typescript.generator.mavenplugin.model.Tipos;
 import org.apache.commons.lang3.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
@@ -17,7 +22,7 @@ import java.util.stream.Stream;
 
 public class SpringService {
 
-    private ConverterService<Model> converterService = new ConverterModelService();
+    private Converter<Model> converter = new ModelConverter();
 
     public String getMethod(Method method) {
         if (method.getDeclaredAnnotation(DeleteMapping.class) != null) {
@@ -97,16 +102,18 @@ public class SpringService {
             Class type = (Class) ((ParameterizedTypeImpl) p.getParameterizedType()).getActualTypeArguments()[0];
 
             if (type.isAnnotationPresent(TsModel.class)){
-                atributo.setTipo(type.getSimpleName() + "[]");
-                service.addImport(converterService.getModel(type));
+                Model model = converter.getModel(type);
+                atributo.setTipo(model.getNome() + "[]");
+                service.addImport(converter.getModel(type));
             } else {
                 atributo.setTipo("any[]");
             }
         }
 
         else if (p.getType().isAnnotationPresent(TsModel.class)) {
-            atributo.setTipo(p.getType().getSimpleName());
-            service.addImport(converterService.getModel(method.getReturnType()));
+            Model model = converter.getModel(p.getType());
+            atributo.setTipo(model.getNome());
+            service.addImport(converter.getModel(method.getReturnType()));
         }
 
         else {

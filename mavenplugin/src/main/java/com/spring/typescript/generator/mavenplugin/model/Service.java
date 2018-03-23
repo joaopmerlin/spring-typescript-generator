@@ -1,5 +1,6 @@
 package com.spring.typescript.generator.mavenplugin.model;
 
+import java.beans.Introspector;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -7,14 +8,12 @@ public class Service implements Arquivo {
 
     private String nome;
 
-    private String nomeArquivo;
-
     private Set<Metodo> metodos = new LinkedHashSet<>();
 
     private Set<Model> imports = new LinkedHashSet<>();
 
     public String getNome() {
-        return nome;
+        return nome + "Service";
     }
 
     public void setNome(String nome) {
@@ -22,11 +21,11 @@ public class Service implements Arquivo {
     }
 
     public String getNomeArquivo() {
-        return nomeArquivo;
+        return nome.toLowerCase() + ".service";
     }
 
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
+    public String getFolder() {
+        return nome.toLowerCase();
     }
 
     public Set<Metodo> getMetodos() {
@@ -45,5 +44,9 @@ public class Service implements Arquivo {
         if (this.imports.stream().filter(e -> e.getNome().equals(model.getNome())).count() == 0) {
             this.imports.add(model);
         }
+    }
+
+    public String getNomeLower() {
+        return Introspector.decapitalize(getNome());
     }
 }
