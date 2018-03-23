@@ -17,6 +17,30 @@ public class Metodo {
 
     private String method;
 
+    private Boolean find = false;
+
+    private Boolean save = false;
+
+    private Boolean delete = false;
+
+    public Metodo(String nome, String retorno, Set<Atributo> parametros, String url, String method) {
+        this.nome = nome;
+        this.retorno = retorno;
+        this.parametros = parametros;
+        this.url = url;
+        this.method = method;
+    }
+
+    public Metodo(String nome, String retorno, String url, String method) {
+        this.nome = nome;
+        this.retorno = retorno;
+        this.url = url;
+        this.method = method;
+    }
+
+    public Metodo() {
+    }
+
     public String getNome() {
         return nome;
     }
@@ -68,5 +92,33 @@ public class Metodo {
     public String getParametroBody() {
         List<Atributo> collect = parametros.stream().filter(e -> e.getBody()).collect(Collectors.toList());
         return collect.isEmpty() ? null : collect.get(0).getNome();
+    }
+
+    public String getParametrosNomes() {
+        return parametros.stream().map(Atributo::getNome).collect(Collectors.joining(", "));
+    }
+
+    public Boolean getFind() {
+        return find;
+    }
+
+    public void setFind(Boolean find) {
+        this.find = find;
+    }
+
+    public Boolean getSave() {
+        return save;
+    }
+
+    public void setSave(Boolean save) {
+        this.save = save;
+    }
+
+    public Boolean getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Boolean delete) {
+        this.delete = delete;
     }
 }

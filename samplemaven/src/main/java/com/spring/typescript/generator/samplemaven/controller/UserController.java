@@ -1,7 +1,12 @@
 package com.spring.typescript.generator.samplemaven.controller;
 
 import com.spring.typescript.generator.annotation.TsComponent;
+import com.spring.typescript.generator.annotation.TsCrudFind;
+import com.spring.typescript.generator.annotation.TsCrudSave;
+import com.spring.typescript.generator.samplemaven.data.UserData;
+import com.spring.typescript.generator.samplemaven.model.Empresa;
 import com.spring.typescript.generator.samplemaven.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,14 +16,23 @@ import java.util.List;
  * Created by joao on 17/08/17.
  */
 
-@TsComponent(User.class)
+@TsComponent(value = User.class, crud = true)
 @RestController
 @RequestMapping("user")
 public class UserController {
 
+    @Autowired private UserData data;
+
     @GetMapping
+    @TsCrudFind
     public List<User> getUsers() {
-        return new ArrayList<>();
+        return data.findAll();
+    }
+
+    @PostMapping
+    @TsCrudSave
+    public User save(@RequestBody User user) {
+        return data.save(user);
     }
 
     @GetMapping("{id}")
@@ -26,8 +40,8 @@ public class UserController {
         return new User();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public List<User> saveUser(@RequestBody List<User> users, int teste) {
-        return users;
+    @GetMapping("empresa")
+    public Empresa getEmpresa(@RequestParam("id") Long id) {
+        return new Empresa();
     }
 }

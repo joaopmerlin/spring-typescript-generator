@@ -32,6 +32,11 @@ public class Model implements Arquivo {
         return nome.toLowerCase();
     }
 
+    @Override
+    public String getExtensao() {
+        return "ts";
+    }
+
     public Set<Atributo> getAtributos() {
         return atributos;
     }

@@ -1,7 +1,6 @@
 package com.spring.typescript.generator.mavenplugin.converter;
 
-import com.spring.typescript.generator.annotation.TsComponent;
-import com.spring.typescript.generator.annotation.TsModel;
+import com.spring.typescript.generator.annotation.*;
 import com.spring.typescript.generator.mavenplugin.model.Metodo;
 import com.spring.typescript.generator.mavenplugin.model.Model;
 import com.spring.typescript.generator.mavenplugin.model.Service;
@@ -38,6 +37,11 @@ public class ServiceConverter extends AbstractConverter<Service> implements Conv
         }
         Model model = getModel(clazz);
         service.setNome(model.getNome());
+        service.setModel(model);
+
+        if (component.crud()) {
+            service.setCrud(true);
+        }
 
         Arrays.asList(aClass.getDeclaredMethods()).forEach(method -> {
             Metodo metodo = new Metodo();
@@ -46,10 +50,21 @@ public class ServiceConverter extends AbstractConverter<Service> implements Conv
             metodo.setMethod(springService.getMethod(method));
             metodo.setParametros(springService.getParametros(method, service));
             metodo.setUrl(springService.getUrl(aClass, method, metodo.getParametros()));
+            setCrudOperations(method, metodo);
             service.addMetodo(metodo);
         });
 
         return service;
+    }
+
+    private void setCrudOperations(Method method, Metodo metodo) {
+        if (method.isAnnotationPresent(TsCrudFind.class)) {
+            metodo.setFind(true);
+        } else if (method.isAnnotationPresent(TsCrudSave.class)) {
+            metodo.setSave(true);
+        } else if (method.isAnnotationPresent(TsCrudDelete.class)) {
+            metodo.setDelete(true);
+        }
     }
 
     private void setRetorno(Method method, Metodo metodo, Service service) {

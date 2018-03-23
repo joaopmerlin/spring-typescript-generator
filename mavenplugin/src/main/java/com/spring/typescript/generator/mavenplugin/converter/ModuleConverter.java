@@ -12,6 +12,7 @@ import java.util.Set;
 public class ModuleConverter extends AbstractConverter<Module> implements Converter<Module> {
 
     private ServiceConverter serviceConverter = new ServiceConverter();
+    private ComponentConverter componentConverter = new ComponentConverter();
 
     @Override
     public List<Module> converter(Set<Class<?>> classes) {
@@ -29,6 +30,7 @@ public class ModuleConverter extends AbstractConverter<Module> implements Conver
             module.setNome(model.getNome());
 
             module.addProvider(serviceConverter.getService(aClass));
+            module.addDeclaration(componentConverter.getComponent(aClass));
 
             modules.add(module);
         });

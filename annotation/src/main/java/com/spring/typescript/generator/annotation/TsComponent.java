@@ -12,4 +12,6 @@ import java.lang.annotation.*;
 public @interface TsComponent {
 
     Class<?> value();
+
+    boolean crud() default false;
 }

@@ -13,6 +13,8 @@ public class PluginService {
     private Converter<Service> converter = new ServiceConverter();
     private Converter<Component> converterComponent = new ComponentConverter();
     private Converter<Module> converterModule = new ModuleConverter();
+    private Converter<Html> converterHtml = new HtmlConverter();
+    private Converter<Css> converterCss = new CssConverter();
 
     public void buid(Parametros parametros) {
 
@@ -28,5 +30,10 @@ public class PluginService {
         List<Module> modules = converterModule.converter(classService.getComponents());
         modules.forEach(module -> templateService.build(module, "module", module.getFolder(), parametros));
 
+        List<Html> htmls = converterHtml.converter(classService.getComponents());
+        htmls.forEach(html -> templateService.build(html, "html", html.getFolder(), parametros));
+
+        List<Css> csss = converterCss.converter(classService.getComponents());
+        csss.forEach(css -> templateService.build(css, "css", css.getFolder(), parametros));
     }
 }

@@ -16,22 +16,26 @@ public class ComponentConverter extends AbstractConverter<Component> implements 
     @Override
     public List<Component> converter(Set<Class<?>> classes) {
         List<Component> components = new ArrayList<>();
-
-        classes.forEach(aClass -> {
-            Component component = new Component();
-
-            TsComponent tsComponent = aClass.getAnnotation(TsComponent.class);
-            Class<?> clazz = tsComponent.value();
-            if (!clazz.isAnnotationPresent(TsModel.class)) {
-                throw new RuntimeException();
-            }
-            Model model = getModel(clazz);
-            component.setNome(model.getNome());
-            component.setService(serviceConverter.getService(aClass));
-
-            components.add(component);
-        });
-
+        classes.forEach(aClass -> components.add(getComponent(aClass)));
         return components;
+    }
+
+    public Component getComponent(Class<?> aClass) {
+        Component component = new Component();
+
+        TsComponent tsComponent = aClass.getAnnotation(TsComponent.class);
+        Class<?> clazz = tsComponent.value();
+        if (!clazz.isAnnotationPresent(TsModel.class)) {
+            throw new RuntimeException();
+        }
+        Model model = getModel(clazz);
+        component.setNome(model.getNome());
+        component.setService(serviceConverter.getService(aClass));
+
+        if (tsComponent.crud()) {
+            component.setCrud(true);
+        }
+
+        return component;
     }
 }

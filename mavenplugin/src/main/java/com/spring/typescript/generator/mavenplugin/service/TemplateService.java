@@ -26,7 +26,7 @@ public class TemplateService {
 
             String dir = parametros.getDestino() + "/" + folder;
             new File(dir).mkdir();
-            File file = new File(dir + String.format("/%s.ts", arquivo.getNomeArquivo()));
+            File file = new File(dir + String.format("/%s.%s", arquivo.getNomeArquivo(), arquivo.getExtensao()));
 
             try (Writer writer = new FileWriter(file)) {
                 template.process(params, writer);

@@ -12,6 +12,10 @@ public class Service implements Arquivo {
 
     private Set<Model> imports = new LinkedHashSet<>();
 
+    private Boolean crud;
+
+    private Model model;
+
     public String getNome() {
         return nome + "Service";
     }
@@ -26,6 +30,11 @@ public class Service implements Arquivo {
 
     public String getFolder() {
         return nome.toLowerCase();
+    }
+
+    @Override
+    public String getExtensao() {
+        return "ts";
     }
 
     public Set<Metodo> getMetodos() {
@@ -48,5 +57,21 @@ public class Service implements Arquivo {
 
     public String getNomeLower() {
         return Introspector.decapitalize(getNome());
+    }
+
+    public Boolean getCrud() {
+        return crud;
+    }
+
+    public void setCrud(Boolean crud) {
+        this.crud = crud;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 }

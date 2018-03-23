@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 <#list module.providers as provider>
-import {${provider.nome}} from '../${provider.folder}/${provider.nomeArquivo}';
+import {${provider.nome}} from './${provider.nomeArquivo}';
 </#list>
 <#list module.declarations as declaration>
-import {${declaration.nome}} from '../${declaration.folder}/${declaration.nomeArquivo}';
+import {${declaration.nome}} from './${declaration.nomeArquivo}';
 </#list>
 
 @NgModule({
   imports: [
-      CommonModule
+    CommonModule
   ],
   declarations: [
     <#list module.declarations as declaration>

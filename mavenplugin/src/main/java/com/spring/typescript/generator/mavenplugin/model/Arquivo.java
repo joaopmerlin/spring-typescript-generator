@@ -8,5 +8,7 @@ public interface Arquivo {
 
     String getFolder();
 
+    String getExtensao();
+
     void addImport(Model model);
 }

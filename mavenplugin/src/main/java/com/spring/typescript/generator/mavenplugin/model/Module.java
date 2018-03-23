@@ -31,6 +31,11 @@ public class Module implements Arquivo {
     }
 
     @Override
+    public String getExtensao() {
+        return "ts";
+    }
+
+    @Override
     public void addImport(Model model) {
 
     }

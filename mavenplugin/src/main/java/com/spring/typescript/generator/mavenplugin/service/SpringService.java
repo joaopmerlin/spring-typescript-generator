@@ -8,9 +8,11 @@ import com.spring.typescript.generator.mavenplugin.model.Model;
 import com.spring.typescript.generator.mavenplugin.model.Service;
 import com.spring.typescript.generator.mavenplugin.model.Tipos;
 import org.apache.commons.lang3.ClassUtils;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.*;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
@@ -126,12 +128,16 @@ public class SpringService {
         }
     }
 
-    private String getUrl(Class c) {
+    public String getUrl(Class c) {
+        String url = "";
+
         if (c.getDeclaredAnnotation(RequestMapping.class) != null) {
             RequestMapping requestMapping = (RequestMapping) c.getDeclaredAnnotation(RequestMapping.class);
-            return requestMapping.value().length == 0 ? "" : requestMapping.value()[0];
+            url = "/" + (requestMapping.value().length == 0 ? "" : requestMapping.value()[0]);
         }
-        return "";
+
+        url = url.replace("//", "/");
+        return url;
     }
 
     private String getUrl(Method method) {

@@ -1,8 +1,11 @@
 package com.spring.typescript.generator.samplemaven.model;
 
-import com.spring.typescript.generator.annotation.TsIgnore;
 import com.spring.typescript.generator.annotation.TsModel;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
@@ -10,11 +13,19 @@ import java.util.Date;
  */
 
 @TsModel("Usuario")
+@Entity
 public class User {
 
-    @TsIgnore
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String email;
+
     private Date cadastro;
+
     private Boolean ativo;
+
+    @ManyToOne
     private Grupo grupo;
 }

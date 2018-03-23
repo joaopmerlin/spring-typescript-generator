@@ -6,6 +6,8 @@ public class Component implements Arquivo {
 
     private Service service;
 
+    private Boolean crud;
+
     @Override
     public String getNome() {
         return nome + "Component";
@@ -26,6 +28,11 @@ public class Component implements Arquivo {
     }
 
     @Override
+    public String getExtensao() {
+        return "ts";
+    }
+
+    @Override
     public void addImport(Model model) {
 
     }
@@ -36,5 +43,13 @@ public class Component implements Arquivo {
 
     public void setService(Service service) {
         this.service = service;
+    }
+
+    public Boolean getCrud() {
+        return crud;
+    }
+
+    public void setCrud(Boolean crud) {
+        this.crud = crud;
     }
 }
