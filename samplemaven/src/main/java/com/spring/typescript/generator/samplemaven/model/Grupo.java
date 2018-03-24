@@ -1,6 +1,7 @@
 package com.spring.typescript.generator.samplemaven.model;
 
 import com.spring.typescript.generator.annotation.TsModel;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 @TsModel
 @Entity
+@Data
 public class Grupo implements Serializable {
 
     @Id

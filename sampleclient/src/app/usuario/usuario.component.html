@@ -1,0 +1,65 @@
+<button type="button" pButton (click)="selectedUsuario = {}; showModal = true" label="New"></button>
+
+<p-table [value]="listUsuario" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>email</th>
+      <th>cadastro</th>
+      <th>ativo</th>
+      <th>grupo</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.cadastro}}</td>
+      <td>{{item.ativo}}</td>
+      <td>{{item.grupo}}</td>
+      <td>
+        <button type="button" pButton (click)="selectedUsuario = item; showModal = true" icon="fa-edit"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="CRUD" [(visible)]="showModal" [modal]="true">
+
+  <div class="ui-g">
+    <div class="ui-g-4">id</div>
+    <div class="ui-g-8">
+      <input type="text" pInputText [(ngModel)]="selectedUsuario.id"/>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-4">email</div>
+    <div class="ui-g-8">
+      <input type="text" pInputText [(ngModel)]="selectedUsuario.email"/>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-4">cadastro</div>
+    <div class="ui-g-8">
+      <input type="text" pInputText [(ngModel)]="selectedUsuario.cadastro"/>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-4">ativo</div>
+    <div class="ui-g-8">
+      <input type="text" pInputText [(ngModel)]="selectedUsuario.ativo"/>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-4">grupo</div>
+    <div class="ui-g-8">
+      <input type="text" pInputText [(ngModel)]="selectedUsuario.grupo"/>
+    </div>
+  </div>
+
+  <p-footer>
+    <button pButton type="button" (click)="save(selectedUsuario)" label="Save" class="ui-button-success"></button>
+    <button pButton type="button" (click)="showModal = false" label="Cancel" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

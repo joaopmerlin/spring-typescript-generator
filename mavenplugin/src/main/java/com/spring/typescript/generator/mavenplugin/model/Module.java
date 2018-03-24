@@ -11,6 +11,8 @@ public class Module implements Arquivo {
 
     private Set<Service> providers = new LinkedHashSet<>();
 
+    private Boolean crud;
+
     @Override
     public String getNome() {
         return nome + "Module";
@@ -54,5 +56,13 @@ public class Module implements Arquivo {
 
     public Set<Component> getDeclarations() {
         return declarations;
+    }
+
+    public Boolean getCrud() {
+        return crud;
+    }
+
+    public void setCrud(Boolean crud) {
+        this.crud = crud;
     }
 }

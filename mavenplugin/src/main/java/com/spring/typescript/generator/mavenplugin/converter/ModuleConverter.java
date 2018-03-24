@@ -32,6 +32,10 @@ public class ModuleConverter extends AbstractConverter<Module> implements Conver
             module.addProvider(serviceConverter.getService(aClass));
             module.addDeclaration(componentConverter.getComponent(aClass));
 
+            if (component.crud()) {
+                module.setCrud(true);
+            }
+
             modules.add(module);
         });
 

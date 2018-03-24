@@ -1,6 +1,7 @@
 package com.spring.typescript.generator.samplemaven.model;
 
 import com.spring.typescript.generator.annotation.TsModel;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import java.util.Date;
 
 @TsModel("Usuario")
 @Entity
+@Data
 public class User {
 
     @Id

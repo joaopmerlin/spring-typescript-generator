@@ -4,6 +4,8 @@ public class Html implements Arquivo {
 
     private String nome;
 
+    private Model model;
+
     @Override
     public String getNome() {
         return nome;
@@ -31,5 +33,13 @@ public class Html implements Arquivo {
     @Override
     public void addImport(Model model) {
 
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 }

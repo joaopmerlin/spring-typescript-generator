@@ -10,6 +10,10 @@ export class UsuarioService {
   constructor(private http: HttpClient) {
   }
 
+  public save(arg0: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`/user`, arg0);
+  }
+
   public getUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`/user`);
   }
@@ -20,10 +24,6 @@ export class UsuarioService {
 
   public getUser(id: number, teste: number): Observable<Usuario> {
     return this.http.get<Usuario>(`/user/${id}?teste=${teste}`);
-  }
-
-  public save(arg0: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`/user`, arg0);
   }
 
 }

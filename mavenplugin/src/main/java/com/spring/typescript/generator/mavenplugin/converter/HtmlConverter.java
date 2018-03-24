@@ -28,6 +28,7 @@ public class HtmlConverter extends AbstractConverter<Html> implements Converter<
         }
         Model model = getModel(clazz);
         html.setNome(model.getNome());
+        html.setModel(model);
 
         return html;
     }

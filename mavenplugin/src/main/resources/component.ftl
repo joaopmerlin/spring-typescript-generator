@@ -18,7 +18,8 @@ export class ${component.nome} implements OnInit {
 
   <#if component.crud>
   list${component.service.model.nome}: ${component.service.model.nome}[];
-  selected${component.service.model.nome}: ${component.service.model.nome};
+  selected${component.service.model.nome} = new ${component.service.model.nome}();
+  showModal = false;
   </#if>
 
   constructor(private ${component.service.nomeLower}: ${component.service.nome}) {
@@ -39,6 +40,12 @@ export class ${component.nome} implements OnInit {
       this.list${component.service.model.nome} = e;
     <#elseif metodo.save>
       this.selected${component.service.model.nome} = e;
+      <#list component.service.metodos as metodo>
+      <#if metodo.find>
+      this.${metodo.nome}();
+      </#if>
+      </#list>
+      this.showModal = false;
     </#if>
     });
   }

@@ -11,13 +11,22 @@ import {Empresa} from '../empresa/empresa';
 export class UsuarioComponent implements OnInit {
 
   listUsuario: Usuario[];
-  selectedUsuario: Usuario;
+  selectedUsuario = new Usuario();
+  showModal = false;
 
   constructor(private usuarioService: UsuarioService) {
   }
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  save(arg0: Usuario) {
+    this.usuarioService.save(arg0).subscribe(e => {
+      this.selectedUsuario = e;
+      this.getUsers();
+      this.showModal = false;
+    });
   }
 
   getUsers() {
@@ -33,12 +42,6 @@ export class UsuarioComponent implements OnInit {
 
   getUser(id: number, teste: number) {
     this.usuarioService.getUser(id, teste).subscribe(e => {
-    });
-  }
-
-  save(arg0: Usuario) {
-    this.usuarioService.save(arg0).subscribe(e => {
-      this.selectedUsuario = e;
     });
   }
 

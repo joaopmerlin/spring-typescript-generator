@@ -19,6 +19,7 @@ import java.util.List;
 @TsComponent(value = User.class, crud = true)
 @RestController
 @RequestMapping("user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired private UserData data;
