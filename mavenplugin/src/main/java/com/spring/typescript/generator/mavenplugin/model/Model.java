@@ -1,5 +1,6 @@
 package com.spring.typescript.generator.mavenplugin.model;
 
+import java.beans.Introspector;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -59,5 +60,9 @@ public class Model implements Arquivo {
 
     public void setModifier(String modifier) {
         this.modifier = modifier;
+    }
+
+    public String getNomeLower() {
+        return Introspector.decapitalize(getNome());
     }
 }

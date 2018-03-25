@@ -1,4 +1,4 @@
-<button type="button" pButton (click)="selectedUsuario = {}; showModal = true" label="New"></button>
+<button type="button" pButton (click)="new()" label="New"></button>
 
 <p-table [value]="listUsuario" [paginator]="true" [rows]="10">
   <ng-template pTemplate="header">
@@ -19,7 +19,8 @@
       <td>{{item.ativo}}</td>
       <td>{{item.grupo}}</td>
       <td>
-        <button type="button" pButton (click)="selectedUsuario = item; showModal = true" icon="fa-edit"></button>
+        <button type="button" pButton (click)="edit(item)" icon="fa-edit"></button>
+        <button type="button" pButton (click)="delete(item.id)" icon="fa-trash" class="ui-button-danger"></button>
       </td>
     </tr>
   </ng-template>
@@ -63,3 +64,5 @@
     <button pButton type="button" (click)="showModal = false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
+
+<p-confirmDialog header="Delete Confirmation" icon="fa fa-trash"></p-confirmDialog>

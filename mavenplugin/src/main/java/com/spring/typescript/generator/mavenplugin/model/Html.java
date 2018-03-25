@@ -6,6 +6,8 @@ public class Html implements Arquivo {
 
     private Model model;
 
+    private Component component;
+
     @Override
     public String getNome() {
         return nome;
@@ -41,5 +43,13 @@ public class Html implements Arquivo {
 
     public void setModel(Model model) {
         this.model = model;
+    }
+
+    public Component getComponent() {
+        return component;
+    }
+
+    public void setComponent(Component component) {
+        this.component = component;
     }
 }

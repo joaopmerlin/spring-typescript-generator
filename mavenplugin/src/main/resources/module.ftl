@@ -5,7 +5,8 @@ import {FormsModule} from "@angular/forms";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
-import {InputTextModule} from "primeng/primeng";
+import {ConfirmDialogModule, InputTextModule} from "primeng/primeng";
+import {ConfirmationService} from "primeng/api";
 </#if>
 <#list module.providers as provider>
 import {${provider.nome}} from './${provider.nomeArquivo}';
@@ -22,7 +23,8 @@ import {${declaration.nome}} from './${declaration.nomeArquivo}';
     TableModule,
     ButtonModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    ConfirmDialogModule
     </#if>
   ],
   declarations: [
@@ -31,6 +33,9 @@ import {${declaration.nome}} from './${declaration.nomeArquivo}';
     </#list>
   ],
   providers: [
+    <#if module.crud>
+    ConfirmationService<#if module.providers?has_content>,</#if>
+    </#if>
     <#list module.providers as provider>
     ${provider.nome}<#sep>,</#sep>
     </#list>

@@ -16,6 +16,8 @@ public class Tipos {
             tipos.put(Number.class, "number");
             tipos.put(Date.class, "Date");
             tipos.put(Boolean.class, "boolean");
+            tipos.put(Void.class, "void");
+            tipos.put(void.class, "void");
         }
 
         return tipos;

@@ -1,4 +1,5 @@
-<button type="button" pButton (click)="selected${html.model.nome} = {}; showModal = true" label="New"></button>
+<#if html.component.crud>
+<button type="button" pButton (click)="new()" label="New"></button>
 
 <p-table [value]="list${html.model.nome}" [paginator]="true" [rows]="10">
   <ng-template pTemplate="header">
@@ -15,7 +16,12 @@
       <td>{{item.${attr.nome}}}</td>
       </#list>
       <td>
-        <button type="button" pButton (click)="selected${html.model.nome} = item; showModal = true" icon="fa-search"></button>
+        <button type="button" pButton (click)="edit(item)" icon="fa-edit"></button>
+        <#list html.component.service.metodos as metodo>
+        <#if metodo.delete>
+        <button type="button" pButton (click)="${metodo.nome}(item.${metodo.parametrosNomes})" icon="fa-trash" class="ui-button-danger"></button>
+        </#if>
+        </#list>
       </td>
     </tr>
   </ng-template>
@@ -33,7 +39,14 @@
   </#list>
 
   <p-footer>
-    <button pButton type="button" (click)="save(selected${html.model.nome})" label="Save" class="ui-button-success"></button>
+    <#list html.component.service.metodos as metodo>
+    <#if metodo.save>
+    <button pButton type="button" (click)="${metodo.nome}(selected${html.model.nome})" label="Save" class="ui-button-success"></button>
+    </#if>
+    </#list>
     <button pButton type="button" (click)="showModal = false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
+
+<p-confirmDialog header="Delete Confirmation" icon="fa fa-trash"></p-confirmDialog>
+</#if>

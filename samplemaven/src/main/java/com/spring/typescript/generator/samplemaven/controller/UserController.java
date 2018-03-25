@@ -1,6 +1,7 @@
 package com.spring.typescript.generator.samplemaven.controller;
 
 import com.spring.typescript.generator.annotation.TsComponent;
+import com.spring.typescript.generator.annotation.TsCrudDelete;
 import com.spring.typescript.generator.annotation.TsCrudFind;
 import com.spring.typescript.generator.annotation.TsCrudSave;
 import com.spring.typescript.generator.samplemaven.data.UserData;
@@ -19,7 +20,7 @@ import java.util.List;
 @TsComponent(value = User.class, crud = true)
 @RestController
 @RequestMapping("user")
-@CrossOrigin("*")
+@CrossOrigin(value = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 public class UserController {
 
     @Autowired private UserData data;
@@ -34,6 +35,12 @@ public class UserController {
     @TsCrudSave
     public User save(@RequestBody User user) {
         return data.save(user);
+    }
+
+    @DeleteMapping("{id}")
+    @TsCrudDelete
+    public void delete(@PathVariable("id") Long id) {
+        data.delete(id);
     }
 
     @GetMapping("{id}")

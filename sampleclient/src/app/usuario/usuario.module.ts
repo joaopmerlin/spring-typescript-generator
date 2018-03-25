@@ -4,7 +4,8 @@ import {FormsModule} from "@angular/forms";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
-import {InputTextModule} from "primeng/primeng";
+import {ConfirmDialogModule, InputTextModule} from "primeng/primeng";
+import {ConfirmationService} from "primeng/api";
 import {UsuarioService} from './usuario.service';
 import {UsuarioComponent} from './usuario.component';
 
@@ -15,12 +16,14 @@ import {UsuarioComponent} from './usuario.component';
     TableModule,
     ButtonModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    ConfirmDialogModule
   ],
   declarations: [
     UsuarioComponent
   ],
   providers: [
+    ConfirmationService,
     UsuarioService
   ]
 })

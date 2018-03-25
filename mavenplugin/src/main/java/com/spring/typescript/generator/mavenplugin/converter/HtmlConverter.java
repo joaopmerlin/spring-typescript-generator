@@ -11,6 +11,8 @@ import java.util.Set;
 
 public class HtmlConverter extends AbstractConverter<Html> implements Converter<Html> {
 
+    private ComponentConverter componentConverter = new ComponentConverter();
+
     @Override
     public List<Html> converter(Set<Class<?>> classes) {
         List<Html> htmls = new ArrayList<>();
@@ -29,6 +31,7 @@ public class HtmlConverter extends AbstractConverter<Html> implements Converter<
         Model model = getModel(clazz);
         html.setNome(model.getNome());
         html.setModel(model);
+        html.setComponent(componentConverter.getComponent(aClass));
 
         return html;
     }
