@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 <#if component.crud>
-import {ConfirmationService} from "primeng/api";
+import {ConfirmationService} from 'primeng/api';
 </#if>
-import {${component.service.nome}} from "./${component.service.nomeArquivo}";
+import {${component.service.nome}} from './${component.service.nomeArquivo}';
 <#list component.service.imports as imp>
 <#if imp.folder != component.service.folder>
 import {${imp.nome}} from '../${imp.folder}/${imp.nomeArquivo}';
@@ -30,7 +30,7 @@ export class ${component.nome} implements OnInit {
 
   ngOnInit(): void {
   <#list component.service.metodos as metodo>
-  <#if metodo.find>
+  <#if metodo.findAll>
     this.${metodo.nome}();
   </#if>
   </#list>
@@ -44,7 +44,7 @@ export class ${component.nome} implements OnInit {
       accept: () => {
         this.${component.service.nomeLower}.${metodo.nome}(${metodo.parametrosNomes}).subscribe(e => {
           <#list component.service.metodos as metodo>
-          <#if metodo.find>
+          <#if metodo.findAll>
           this.${metodo.nome}();
           </#if>
           </#list>
@@ -53,11 +53,11 @@ export class ${component.nome} implements OnInit {
     });
     <#else>
     this.${component.service.nomeLower}.${metodo.nome}(${metodo.parametrosNomes}).subscribe(e => {
-    <#if metodo.find>
+    <#if metodo.findAll>
       this.list${component.service.model.nome} = e;
     <#elseif metodo.save>
       <#list component.service.metodos as metodo>
-      <#if metodo.find>
+      <#if metodo.findAll>
       this.${metodo.nome}();
       </#if>
       </#list>

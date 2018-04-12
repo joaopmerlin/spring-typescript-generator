@@ -27,13 +27,17 @@
   </ng-template>
 </p-table>
 
-<p-dialog header="CRUD" [(visible)]="showModal" [modal]="true">
+<p-dialog header="CRUD" [(visible)]="showModal" [modal]="true" [width]="600">
 
   <#list html.model.atributos as attr>
   <div class="ui-g">
     <div class="ui-g-4">${attr.nome}</div>
     <div class="ui-g-8">
+      <#if attr.tipoComponente == 'INPUT_TEXT'>
       <input type="text" pInputText [(ngModel)]="selected${html.model.nome}.${attr.nome}"/>
+      <#elseif attr.tipoComponente == 'INPUT_NUMBER'>
+      <input type="number" pInputText [(ngModel)]="selected${html.model.nome}.${attr.nome}"/>
+      </#if>
     </div>
   </div>
   </#list>

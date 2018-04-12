@@ -26,12 +26,12 @@
   </ng-template>
 </p-table>
 
-<p-dialog header="CRUD" [(visible)]="showModal" [modal]="true">
+<p-dialog header="CRUD" [(visible)]="showModal" [modal]="true" [width]="600">
 
   <div class="ui-g">
     <div class="ui-g-4">id</div>
     <div class="ui-g-8">
-      <input type="text" pInputText [(ngModel)]="selectedUsuario.id"/>
+      <input type="number" pInputText [(ngModel)]="selectedUsuario.id"/>
     </div>
   </div>
   <div class="ui-g">
@@ -43,19 +43,16 @@
   <div class="ui-g">
     <div class="ui-g-4">cadastro</div>
     <div class="ui-g-8">
-      <input type="text" pInputText [(ngModel)]="selectedUsuario.cadastro"/>
     </div>
   </div>
   <div class="ui-g">
     <div class="ui-g-4">ativo</div>
     <div class="ui-g-8">
-      <input type="text" pInputText [(ngModel)]="selectedUsuario.ativo"/>
     </div>
   </div>
   <div class="ui-g">
     <div class="ui-g-4">grupo</div>
     <div class="ui-g-8">
-      <input type="text" pInputText [(ngModel)]="selectedUsuario.grupo"/>
     </div>
   </div>
 

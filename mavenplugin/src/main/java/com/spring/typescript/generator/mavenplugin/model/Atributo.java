@@ -1,5 +1,7 @@
 package com.spring.typescript.generator.mavenplugin.model;
 
+import com.spring.typescript.generator.mavenplugin.enumeration.TipoComponente;
+
 public class Atributo {
 
     private String nome;
@@ -9,6 +11,8 @@ public class Atributo {
     private Boolean body = false;
 
     private Boolean param = false;
+
+    private TipoComponente tipoComponente;
 
     public String getNome() {
         return nome;
@@ -40,5 +44,13 @@ public class Atributo {
 
     public void setParam(Boolean param) {
         this.param = param;
+    }
+
+    public TipoComponente getTipoComponente() {
+        return tipoComponente;
+    }
+
+    public void setTipoComponente(TipoComponente tipoComponente) {
+        this.tipoComponente = tipoComponente;
     }
 }

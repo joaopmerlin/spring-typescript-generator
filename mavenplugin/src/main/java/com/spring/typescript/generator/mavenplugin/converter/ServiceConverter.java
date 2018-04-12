@@ -58,8 +58,10 @@ public class ServiceConverter extends AbstractConverter<Service> implements Conv
     }
 
     private void setCrudOperations(Method method, Metodo metodo) {
-        if (method.isAnnotationPresent(TsCrudFind.class)) {
-            metodo.setFind(true);
+        if (method.isAnnotationPresent(TsCrudFindAll.class)) {
+            metodo.setFindAll(true);
+        } else if (method.isAnnotationPresent(TsCrudFindOne.class)) {
+            metodo.setFindOne(true);
         } else if (method.isAnnotationPresent(TsCrudSave.class)) {
             metodo.setSave(true);
         } else if (method.isAnnotationPresent(TsCrudDelete.class)) {

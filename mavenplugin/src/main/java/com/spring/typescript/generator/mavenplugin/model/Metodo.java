@@ -17,7 +17,9 @@ public class Metodo {
 
     private String method;
 
-    private Boolean find = false;
+    private Boolean findAll = false;
+
+    private Boolean findOne = false;
 
     private Boolean save = false;
 
@@ -98,12 +100,12 @@ public class Metodo {
         return parametros.stream().map(Atributo::getNome).collect(Collectors.joining(", "));
     }
 
-    public Boolean getFind() {
-        return find;
+    public Boolean getFindAll() {
+        return findAll;
     }
 
-    public void setFind(Boolean find) {
-        this.find = find;
+    public void setFindAll(Boolean findAll) {
+        this.findAll = findAll;
     }
 
     public Boolean getSave() {
@@ -120,5 +122,13 @@ public class Metodo {
 
     public void setDelete(Boolean delete) {
         this.delete = delete;
+    }
+
+    public Boolean getFindOne() {
+        return findOne;
+    }
+
+    public void setFindOne(Boolean findOne) {
+        this.findOne = findOne;
     }
 }

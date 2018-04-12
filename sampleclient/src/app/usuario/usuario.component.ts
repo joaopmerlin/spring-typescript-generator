@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ConfirmationService} from "primeng/api";
-import {UsuarioService} from "./usuario.service";
+import {ConfirmationService} from 'primeng/api';
+import {UsuarioService} from './usuario.service';
 import {Usuario} from './usuario';
-import {Empresa} from '../empresa/empresa';
 
 @Component({
   selector: 'app-usuario',
@@ -19,7 +18,18 @@ export class UsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.findAll();
+  }
+
+  findAll() {
+    this.usuarioService.findAll().subscribe(e => {
+      this.listUsuario = e;
+    });
+  }
+
+  findOne(id: number) {
+    this.usuarioService.findOne(id).subscribe(e => {
+    });
   }
 
   delete(id: number) {
@@ -27,7 +37,7 @@ export class UsuarioComponent implements OnInit {
       message: 'Do you want to delete this record?',
       accept: () => {
         this.usuarioService.delete(id).subscribe(e => {
-          this.getUsers();
+          this.findAll();
         });
       }
     });
@@ -35,24 +45,8 @@ export class UsuarioComponent implements OnInit {
 
   save(arg0: Usuario) {
     this.usuarioService.save(arg0).subscribe(e => {
-      this.getUsers();
+      this.findAll();
       this.showModal = false;
-    });
-  }
-
-  getUser(id: number, teste: number) {
-    this.usuarioService.getUser(id, teste).subscribe(e => {
-    });
-  }
-
-  getEmpresa(id: number) {
-    this.usuarioService.getEmpresa(id).subscribe(e => {
-    });
-  }
-
-  getUsers() {
-    this.usuarioService.getUsers().subscribe(e => {
-      this.listUsuario = e;
     });
   }
 

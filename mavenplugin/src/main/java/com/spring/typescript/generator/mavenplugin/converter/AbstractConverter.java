@@ -6,6 +6,7 @@ import com.spring.typescript.generator.mavenplugin.model.Arquivo;
 import com.spring.typescript.generator.mavenplugin.model.Atributo;
 import com.spring.typescript.generator.mavenplugin.model.Model;
 import com.spring.typescript.generator.mavenplugin.model.Tipos;
+import com.spring.typescript.generator.mavenplugin.service.TipoComponenteService;
 import org.apache.commons.lang3.ClassUtils;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
@@ -39,6 +40,7 @@ public abstract class AbstractConverter<T> implements Converter<T> {
                 Atributo atributo = new Atributo();
                 atributo.setNome(field.getName());
                 atributo.setTipo(getType(field, model));
+                atributo.setTipoComponente(TipoComponenteService.getTipoComponente(field));
 
                 model.addAtributo(atributo);
             }
