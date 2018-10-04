@@ -1,6 +1,7 @@
 package com.spring.typescript.generator.samplemaven.model;
 
 import com.spring.typescript.generator.annotation.TsModel;
+import com.spring.typescript.generator.annotation.TsRelationship;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -29,5 +30,6 @@ public class User {
     private Boolean ativo;
 
     @ManyToOne
+    @TsRelationship(label = "nome")
     private Grupo grupo;
 }

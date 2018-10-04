@@ -1,9 +1,8 @@
 package com.spring.typescript.generator.mavenplugin.service;
 
-import com.spring.typescript.generator.annotation.TsModel;
+import com.spring.typescript.generator.annotation.TsRelationship;
 import com.spring.typescript.generator.mavenplugin.enumeration.TipoComponente;
 import org.apache.commons.lang3.ClassUtils;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -11,16 +10,11 @@ import java.util.Date;
 public class TipoComponenteService {
 
     public static TipoComponente getTipoComponente(Field field) {
-        if (ClassUtils.isAssignable(field.getType(), Iterable.class)) {
-            Class type = (Class)((ParameterizedTypeImpl) field.getGenericType()).getActualTypeArguments()[0];
-
-            if (type.isAnnotationPresent(TsModel.class)){
-                return TipoComponente.AUTO_COMPLETE_MULTIPLE;
-            } else {
+        if (field.isAnnotationPresent(TsRelationship.class)) {
+            if (ClassUtils.isAssignable(field.getType(), Iterable.class)) {
                 return TipoComponente.MULTI_SELECT;
             }
-        } else if (field.getType().isAnnotationPresent(TsModel.class)) {
-            return TipoComponente.AUTO_COMPLETE;
+            return TipoComponente.DROPDOWN;
         } else if (ClassUtils.isAssignable(field.getType(), String.class)) {
             return TipoComponente.INPUT_TEXT;
         } else if (ClassUtils.isAssignable(field.getType(), Number.class)) {

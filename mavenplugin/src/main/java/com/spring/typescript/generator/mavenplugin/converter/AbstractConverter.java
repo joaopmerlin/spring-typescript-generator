@@ -2,6 +2,7 @@ package com.spring.typescript.generator.mavenplugin.converter;
 
 import com.spring.typescript.generator.annotation.TsIgnore;
 import com.spring.typescript.generator.annotation.TsModel;
+import com.spring.typescript.generator.annotation.TsRelationship;
 import com.spring.typescript.generator.mavenplugin.model.Arquivo;
 import com.spring.typescript.generator.mavenplugin.model.Atributo;
 import com.spring.typescript.generator.mavenplugin.model.Model;
@@ -10,6 +11,7 @@ import com.spring.typescript.generator.mavenplugin.service.TipoComponenteService
 import org.apache.commons.lang3.ClassUtils;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
+import javax.persistence.GeneratedValue;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -41,6 +43,16 @@ public abstract class AbstractConverter<T> implements Converter<T> {
                 atributo.setNome(field.getName());
                 atributo.setTipo(getType(field, model));
                 atributo.setTipoComponente(TipoComponenteService.getTipoComponente(field));
+
+                if (field.isAnnotationPresent(GeneratedValue.class)) {
+                    atributo.setDisabled(true);
+                }
+
+                if (field.isAnnotationPresent(TsRelationship.class)) {
+                    TsRelationship relationship = field.getAnnotation(TsRelationship.class);
+                    atributo.setRelationShip(true);
+                    atributo.setRelationShipLabel(relationship.label());
+                }
 
                 model.addAtributo(atributo);
             }

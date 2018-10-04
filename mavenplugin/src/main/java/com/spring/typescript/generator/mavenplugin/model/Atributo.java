@@ -12,7 +12,13 @@ public class Atributo {
 
     private Boolean param = false;
 
+    private Boolean disabled = false;
+
     private TipoComponente tipoComponente;
+
+    private Boolean relationShip = false;
+
+    private String relationShipLabel;
 
     public String getNome() {
         return nome;
@@ -46,11 +52,35 @@ public class Atributo {
         this.param = param;
     }
 
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
+    }
+
     public TipoComponente getTipoComponente() {
         return tipoComponente;
     }
 
     public void setTipoComponente(TipoComponente tipoComponente) {
         this.tipoComponente = tipoComponente;
+    }
+
+    public Boolean getRelationShip() {
+        return relationShip;
+    }
+
+    public void setRelationShip(Boolean relationShip) {
+        this.relationShip = relationShip;
+    }
+
+    public String getRelationShipLabel() {
+        return relationShipLabel;
+    }
+
+    public void setRelationShipLabel(String relationShipLabel) {
+        this.relationShipLabel = relationShipLabel;
     }
 }

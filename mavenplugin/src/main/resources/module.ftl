@@ -6,6 +6,9 @@ import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule, InputTextModule} from "primeng/primeng";
+import {CalendarModule} from 'primeng/calendar';
+import {CheckboxModule} from 'primeng/checkbox';
+import {DropdownModule} from 'primeng/dropdown';
 import {ConfirmationService} from "primeng/api";
 </#if>
 <#list module.providers as provider>
@@ -24,6 +27,9 @@ import {${declaration.nome}} from './${declaration.nomeArquivo}';
     ButtonModule,
     DialogModule,
     InputTextModule,
+    CalendarModule,
+    CheckboxModule,
+    DropdownModule,
     ConfirmDialogModule
     </#if>
   ],

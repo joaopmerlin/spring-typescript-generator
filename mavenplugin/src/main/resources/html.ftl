@@ -13,7 +13,11 @@
   <ng-template pTemplate="body" let-item>
     <tr>
       <#list html.model.atributos as attr>
+      <#if attr.tipoComponente == 'CALENDAR'>
+      <td>{{item.${attr.nome} | date}}</td>
+      <#else>
       <td>{{item.${attr.nome}}}</td>
+      </#if>
       </#list>
       <td>
         <button type="button" pButton (click)="edit(item)" icon="fa-edit"></button>
@@ -34,14 +38,50 @@
     <div class="ui-g-4">${attr.nome}</div>
     <div class="ui-g-8">
       <#if attr.tipoComponente == 'INPUT_TEXT'>
-      <input type="text" pInputText [(ngModel)]="selected${html.model.nome}.${attr.nome}"/>
+      <input type="text"
+             pInputText
+             name="${attr.nome}"
+             <#if attr.disabled == true>
+             disabled
+             </#if>
+             [(ngModel)]="selected${html.model.nome}.${attr.nome}"/>
       <#elseif attr.tipoComponente == 'INPUT_NUMBER'>
-      <input type="number" pInputText [(ngModel)]="selected${html.model.nome}.${attr.nome}"/>
+      <input type="number"
+             pInputText
+             name="${attr.nome}"
+             <#if attr.disabled == true>
+             disabled
+             </#if>
+             [(ngModel)]="selected${html.model.nome}.${attr.nome}"/>
+      <#elseif attr.tipoComponente == 'CALENDAR'>
+      <p-calendar name="${attr.nome}"
+                  appendTo="body"
+                  <#if attr.disabled == true>
+                  disabled
+                  </#if>
+                  [(ngModel)]="selected${html.model.nome}.${attr.nome}"></p-calendar>
+      <#elseif attr.tipoComponente == 'CHECKBOX'>
+      <p-checkbox name="${attr.nome}"
+                  binary="true"
+                  <#if attr.disabled == true>
+                  disabled
+                  </#if>
+                  [(ngModel)]="selected${html.model.nome}.${attr.nome}"></p-checkbox>
+      <#elseif attr.tipoComponente == 'DROPDOWN' && attr.relationShip == true>
+      <p-dropdown name="${attr.nome}"
+                  appendTo="body"
+                  <#if attr.disabled == true>
+                  disabled
+                  </#if>
+                  [options]="${attr.nome}Options"
+                  optionLabel="${attr.relationShipLabel}"
+                  [autoDisplayFirst]="false"
+                  [(ngModel)]="selected${html.model.nome}.${attr.nome}"></p-dropdown>
       </#if>
     </div>
   </div>
-  </#list>
 
+  </#list>
   <p-footer>
     <#list html.component.service.metodos as metodo>
     <#if metodo.save>

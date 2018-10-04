@@ -36,6 +36,12 @@ public class ComponentConverter extends AbstractConverter<Component> implements 
             component.setCrud(true);
         }
 
+        model.getAtributos().forEach(attr -> {
+            if (attr.getRelationShip()) {
+                component.addImport(new Model(attr.getTipo() + "Service"));
+            }
+        });
+
         return component;
     }
 }

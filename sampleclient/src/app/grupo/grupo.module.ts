@@ -9,8 +9,8 @@ import {CalendarModule} from 'primeng/calendar';
 import {CheckboxModule} from 'primeng/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
 import {ConfirmationService} from "primeng/api";
-import {UsuarioService} from './usuario.service';
-import {UsuarioComponent} from './usuario.component';
+import {GrupoService} from './grupo.service';
+import {GrupoComponent} from './grupo.component';
 
 @NgModule({
   imports: [
@@ -26,12 +26,12 @@ import {UsuarioComponent} from './usuario.component';
     ConfirmDialogModule
   ],
   declarations: [
-    UsuarioComponent
+    GrupoComponent
   ],
   providers: [
     ConfirmationService,
-    UsuarioService
+    GrupoService
   ]
 })
-export class UsuarioModule {
+export class GrupoModule {
 }

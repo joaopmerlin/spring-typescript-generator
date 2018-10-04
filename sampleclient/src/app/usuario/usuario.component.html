@@ -15,7 +15,7 @@
     <tr>
       <td>{{item.id}}</td>
       <td>{{item.email}}</td>
-      <td>{{item.cadastro}}</td>
+      <td>{{item.cadastro | date}}</td>
       <td>{{item.ativo}}</td>
       <td>{{item.grupo}}</td>
       <td>
@@ -31,28 +31,51 @@
   <div class="ui-g">
     <div class="ui-g-4">id</div>
     <div class="ui-g-8">
-      <input type="number" pInputText [(ngModel)]="selectedUsuario.id"/>
+      <input type="number"
+             pInputText
+             name="id"
+             disabled
+             [(ngModel)]="selectedUsuario.id"/>
     </div>
   </div>
+
   <div class="ui-g">
     <div class="ui-g-4">email</div>
     <div class="ui-g-8">
-      <input type="text" pInputText [(ngModel)]="selectedUsuario.email"/>
+      <input type="text"
+             pInputText
+             name="email"
+             [(ngModel)]="selectedUsuario.email"/>
     </div>
   </div>
+
   <div class="ui-g">
     <div class="ui-g-4">cadastro</div>
     <div class="ui-g-8">
+      <p-calendar name="cadastro"
+                  appendTo="body"
+                  [(ngModel)]="selectedUsuario.cadastro"></p-calendar>
     </div>
   </div>
+
   <div class="ui-g">
     <div class="ui-g-4">ativo</div>
     <div class="ui-g-8">
+      <p-checkbox name="ativo"
+                  binary="true"
+                  [(ngModel)]="selectedUsuario.ativo"></p-checkbox>
     </div>
   </div>
+
   <div class="ui-g">
     <div class="ui-g-4">grupo</div>
     <div class="ui-g-8">
+      <p-dropdown name="grupo"
+                  appendTo="body"
+                  [options]="grupoOptions"
+                  optionLabel="nome"
+                  [autoDisplayFirst]="false"
+                  [(ngModel)]="selectedUsuario.grupo"></p-dropdown>
     </div>
   </div>
 

@@ -1,5 +1,6 @@
 package com.spring.typescript.generator.samplemaven.model;
 
+import com.spring.typescript.generator.annotation.TsIgnore;
 import com.spring.typescript.generator.annotation.TsModel;
 import lombok.Data;
 
@@ -27,5 +28,6 @@ public class Grupo implements Serializable {
     private String nome;
 
     @ManyToMany
+    @TsIgnore
     private Set<Empresa> empresas;
 }

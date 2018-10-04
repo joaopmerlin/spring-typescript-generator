@@ -21,17 +21,6 @@ export class UsuarioComponent implements OnInit {
     this.findAll();
   }
 
-  findAll() {
-    this.usuarioService.findAll().subscribe(e => {
-      this.listUsuario = e;
-    });
-  }
-
-  findOne(id: number) {
-    this.usuarioService.findOne(id).subscribe(e => {
-    });
-  }
-
   delete(id: number) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
@@ -47,6 +36,17 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.save(arg0).subscribe(e => {
       this.findAll();
       this.showModal = false;
+    });
+  }
+
+  findAll() {
+    this.usuarioService.findAll().subscribe(e => {
+      this.listUsuario = e;
+    });
+  }
+
+  findOne(id: number) {
+    this.usuarioService.findOne(id).subscribe(e => {
     });
   }
 

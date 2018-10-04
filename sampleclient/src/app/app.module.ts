@@ -6,8 +6,7 @@ import {AppRouting} from './app.routing';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CustomHttpInterceptor} from './http.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {GrupoModule} from './grupo/grupo.module';
-
+import {GrupoModule} from "./grupo/grupo.module";
 
 @NgModule({
   declarations: [

@@ -14,6 +14,13 @@ public class Model implements Arquivo {
 
     private String modifier;
 
+    public Model() {
+    }
+
+    public Model(String nome) {
+        this.nome = nome;
+    }
+
     @Override
     public String getNome() {
         return nome;
