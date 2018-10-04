@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
 import {UsuarioService} from './usuario.service';
 import {Usuario} from './usuario';
+import {Grupo} from "../grupo/grupo";
+import {GrupoService} from "../grupo/grupo.service";
 
 @Component({
   selector: 'app-usuario',
@@ -13,8 +15,10 @@ export class UsuarioComponent implements OnInit {
   listUsuario: Usuario[];
   selectedUsuario = new Usuario();
   showModal = false;
+  grupoOptions: Grupo[] = [];
 
-  constructor(private usuarioService: UsuarioService, private confirmationService: ConfirmationService) {
+  constructor(private usuarioService: UsuarioService, private grupoService: GrupoService, private confirmationService: ConfirmationService) {
+    this.grupoService.findAll().subscribe(e => this.grupoOptions = e);
   }
 
   ngOnInit(): void {

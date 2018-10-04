@@ -17,7 +17,7 @@
       <td>{{item.email}}</td>
       <td>{{item.cadastro | date}}</td>
       <td>{{item.ativo}}</td>
-      <td>{{item.grupo}}</td>
+      <td>{{item.grupo.nome}}</td>
       <td>
         <button type="button" pButton (click)="edit(item)" icon="fa-edit"></button>
         <button type="button" pButton (click)="delete(item.id)" icon="fa-trash" class="ui-button-danger"></button>
